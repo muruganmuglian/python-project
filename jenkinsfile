@@ -4,7 +4,6 @@ pipeline {
     tools {
         maven "maven-3.9.3"
     }
-    
     stages {
         stage('Checkout from Git') {
             steps {
@@ -12,7 +11,6 @@ pipeline {
                 git url: 'https://github.com/muruganmuglian/python-project.git', branch: 'main', credentialsId: 'git_credentials'
             }
         }
-        
         stage('Build the code') {
             steps {
                 sh "mvn clean install -DskipTests"
