@@ -1,20 +1,23 @@
 pipeline {
     agent any
-tools {
-maven"maven-3.9.3"
-}
-stages {
-        stage('Checkout from git') {
+    
+    tools {
+        maven "maven-3.9.3"
+    }
+    
+    stages {
+        stage('Checkout from Git') {
             steps {
                 // Get code from a GitHub repository
-                git url: 'https://github.com/muruganmuglian/python-project.git', branch: 'main',
-                 credentialsId: 'git_credentials'
+                git url: 'https://github.com/muruganmuglian/python-project.git', branch: 'main', credentialsId: 'git_credentials'
             }
         }
-stages('Build the code'){
-steps{
-sh "mvn clean install .dskipTesks"
+        
+        stage('Build the code') {
+            steps {
+                sh "mvn clean install -DskipTests"
+            }
+        }
+    }
 }
-}
-}
-}
+
